@@ -20,4 +20,13 @@ const VideoCard = ({ info }) => {
   );
 };
 
+export const AddVideoCard = ({ info }) => {
+  return (
+    <div className="p-1 m-1 border border-red-800">
+      {" "}
+      <VideoCard info={info} />
+    </div>
+  );
+};
+
 export default VideoCard;
