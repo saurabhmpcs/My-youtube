@@ -1,10 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { YOUTUBE_SEARCH_API } from "../utils/contants";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  console.log(searchQuery);
+
+  useEffect(() => {
+    console.log(searchQuery);
+
+    //Make an API call after every key press
+    //but if the differnce between 2 API calls is < 200ms decline API CALL
+    const timer = setTimeout(() => getSearchSuggestion(), 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  /**
+   * key-i
+   * -render the component
+   * -useEffect()
+   * -start timer => make api call after 200ms
+   *
+   * key - ip
+   * - if key p is pressed before 200 ms - then JS destroys the component(using useEffect return method)
+   * -re-render the component
+   * -useEffect()
+   * -start timer => make api call after 200ms(new timer)
+   */
+
+  const getSearchSuggestion = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log(json[1]);
+  };
 
   const dispatch = useDispatch();
 
