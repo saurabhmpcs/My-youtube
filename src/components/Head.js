@@ -62,15 +62,17 @@ const Head = () => {
         </a>
       </div>
       <div className="col-span-10 px-10">
-        <input
-          className="w-1/2 border border-gray-400 rounded-l-full"
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button className="border border-gray-400 rounded-r-full  bg-gray-100 w-10">
-          <i className="fa-solid fa-magnifying-glass p-0"></i>
-        </button>
+        <div>
+          <input
+            className="w-1/2 border border-gray-400 rounded-l-full"
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button className="border border-gray-400 rounded-r-full  bg-gray-100 w-10">
+            <i className="fa-solid fa-magnifying-glass p-0"></i>
+          </button>
+        </div>
       </div>
 
       <div className="col-span-1">
